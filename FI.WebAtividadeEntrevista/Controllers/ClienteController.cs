@@ -149,5 +149,35 @@ namespace WebAtividadeEntrevista.Controllers
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
+
+
+        /// <summary>
+        /// VerificaCPF confere se o CPF é válido ou não
+        /// </summary>
+        /// <param name="cpf"><see cref="cpf" /> é o valor de CPF que deseja conferir se é válido</param>
+        /// <returns></returns>
+        public bool VerificaCPF(string cpf)
+        {
+            var soma = 0;
+            for(int i=0; i<=11; i++)
+            {
+                soma += Convert.ToInt32(cpf[i]);
+            }
+
+
+            string cpfString = soma.ToString();
+            if(cpfString.Length == 2)
+            {
+                int x = Convert.ToInt32(cpfString[0]);
+                int y = Convert.ToInt32(cpfString[1]);
+
+                if(x == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
